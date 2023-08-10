@@ -1,4 +1,4 @@
-package Problem_1;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,7 +76,7 @@ public class HandlingCyclicTreeSerializer implements TreeSerializer {
         node1.right = node3;
         node2.left = node3;  // creating cycle
 
-        CyclicTreeSerializer serializer = new CyclicTreeSerializer();
+        HandlingCyclicTreeSerializer serializer = new HandlingCyclicTreeSerializer();
         String serialized = serializer.serialize(node1);
         System.out.println("Serialized: " + serialized);
 
