@@ -1,0 +1,31 @@
+To support any data type in the tree instead of just integers, we would make the following changes:
+
+Generics:
+Using Java Generics to define the node's data type, allowing for more flexibility.
+
+Serialization and Deserialization:
+To handle generic types during serialization and deserialization, the methods should be able to convert the data type to a string during serialization and convert it back from a string during deserialization. This means there must be some standardized way to represent each possible data type as a string, and also to convert it back. One common solution is to use JSON representation.
+
+However, this also means that not all data types can be directly supported unless we have a defined mechanism to serialize and deserialize them. Java's basic built-in types can be handled relatively easily, but user-defined types or complex data structures will require custom serialization methods or a serialization library.
+
+Step By Step Approach :
+
+Generify Node Class
+
+public class Node<T> 
+{
+    Node<T> left;
+    Node<T> right;
+    T data;
+}
+
+ Update Serializer Interface
+
+ public interface TreeSerializer<T> 
+ {
+    String serialize(Node<T> root);
+    Node<T> deserialize(String str);
+}
+
+When serializing T data in the Node, we can convert basic Java types (like String, Integer, Double, etc.) to string using String.valueOf(data). When deserializing, we would need a way to determine the type and convert the string back to that type.
+
